@@ -1,11 +1,13 @@
 package com.utfpr.tattool.api.apitattool.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
-@Entity
+@Entity(name="art")
 public class Art {
 	
 	@Id
@@ -13,7 +15,8 @@ public class Art {
 	private Integer id;
 	
 	private String description;
-	private byte image;
+	@OneToOne(cascade = {CascadeType.ALL})
+	private ImageS3 image;
 	private String tag;
 	public Integer getId() {
 		return id;
@@ -27,10 +30,10 @@ public class Art {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public byte getImage() {
+	public ImageS3 getImage() {
 		return image;
 	}
-	public void setImage(byte image) {
+	public void setImage(ImageS3 image) {
 		this.image = image;
 	}
 	public String getTag() {

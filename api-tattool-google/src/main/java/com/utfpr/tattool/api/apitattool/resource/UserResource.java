@@ -97,12 +97,13 @@ public class UserResource {
 
 	@GetMapping("/verify")
 	@ApiOperation(value = "Verifica se existe o ADMIN no sistema, se não tiver ele cria",response = User.class)
-	public ResponseEntity<User> start(){
+	public HttpStatus start(){
 		User usuarioVerificado = userRepository.verificaAdmin();
 		if(usuarioVerificado == null){
-			return ResponseEntity.status(HttpStatus.CREATED).body(userRepository.save(new User("Admin", "1", "Administrador", 1, 'N')));
+			userRepository.save(new User("Admin", "1", "Administrador", 1, 'N'));
+			return HttpStatus.CREATED;
 		}
-		return ResponseEntity.ok().body(usuarioVerificado);
+		return HttpStatus.OK;
 	}
 	
 	@GetMapping("/verify/username")

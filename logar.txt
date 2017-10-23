@@ -1,0 +1,1 @@
+"D:\Programas\Git\usr\bin\ssh.exe" 18.216.80.47 -l ec2-user -i keypair.pem
